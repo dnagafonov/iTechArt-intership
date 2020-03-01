@@ -14,6 +14,10 @@ const initailState = {
 
 const store = createStore(loginReducer, initailState);
 
+store.subscribe(() => {
+  console.log(store.getState());
+})
+
 ReactDOM.render(
 <Provider store={store}>
   <App />
