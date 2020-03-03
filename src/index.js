@@ -6,13 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import loginReducer from './reducers/login-reducer'
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const initailState = {
-  users:[],
-  isAuthorizated: false
-}
-
-const store = createStore(loginReducer, initailState);
+const store = createStore(loginReducer, composeWithDevTools());
 
 store.subscribe(() => {
   console.log(store.getState());

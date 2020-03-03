@@ -1,13 +1,12 @@
-const action_constants = require('../actions/action-constants');
+const {type} = require('../actions/action-constants');
 
 const loginReducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
-    case action_constants.LOG_IN:
-      return { ...state.users, isAuthorizated: true };
+    case type.LOGIN:
+      return { account: action.account, isAuthorizated: true };
 
-    case action_constants.LOG_OUT:
-      return { ...state.users, isAuthorizated: false };
+    case type.LOGOUT:
+      return { account: "", isAuthorizated: false };
 
     default:
       return state;
