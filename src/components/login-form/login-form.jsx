@@ -10,12 +10,13 @@ class LoginForm extends React.Component {
   state = {
     login: "",
     password: "",
-    isLogin: false,
+    isAuthorizated: this.props.isAuthorizated,
     isLoginAlert: false
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state)
     if(this.state.login !== "" && this.state.password !== ""){
       axios.post('/api/users/login',{
         login: `${this.state.login}`,
@@ -25,8 +26,8 @@ class LoginForm extends React.Component {
         console.log(res);
         if(res.data === "success"){
           this.setState({
-            isLogin: true,
-          });
+            isAuthorizated: true
+          })
           this.props.login({
             login: this.state.login,
             password: this.state.password
@@ -51,10 +52,11 @@ class LoginForm extends React.Component {
   render() {
     const loginAlert = this.state.isLoginAlert ? "" : "hide";
     let loginForm = null;
-    if(!this.state.isLogin){
+    console.log(this.state)
+    if(!this.state.isAuthorizated){
       loginForm = (
         <div className = "login-wrapper">
-        <Form>
+        <Form className="form">
           <Alert variant = "danger" className = {loginAlert}>Incorrect login or password.</Alert>
           <Form.Group controlId = "login">
             <Form.Control type = "text" placeholder = "login" onChange = { this.loginChange } value={ this.state.login }/>
@@ -83,4 +85,8 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+const mapStateToProps = (state) => ({
+  isAuthorizated: state.isAuthorizated
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

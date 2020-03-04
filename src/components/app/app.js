@@ -1,17 +1,20 @@
 import React from 'react';
-import './app.css';
 import LoginForm from '../login-form/login-form'
+import { connect } from 'react-redux';
 
 class App extends React.Component {
 
+  state = this.props.state;
 
   render(){
     return (
-      <div className="app">
-        <LoginForm />
-      </div>
+      <>
+        <LoginForm/>
+      </>
     );
   };
 }
 
-export default App;
+const mapStateToProps = (state) => ({state});
+
+export default connect(mapStateToProps)(App);
