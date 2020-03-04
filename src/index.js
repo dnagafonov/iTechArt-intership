@@ -8,7 +8,15 @@ import { createStore } from 'redux';
 import loginReducer from './reducers/login-reducer'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(loginReducer, composeWithDevTools());
+const initialState = {
+  account: {
+    login: "",
+    password: ""
+  },
+  isAuthorizated: false
+};
+
+const store = createStore(loginReducer, initialState, composeWithDevTools());
 
 store.subscribe(() => {
   console.log(store.getState());
