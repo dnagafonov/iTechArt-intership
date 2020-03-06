@@ -10,8 +10,13 @@ class LoginForm extends React.Component {
   state = {
     login: "",
     password: "",
-    isAuthorizated: this.props.isAuthorizated,
     isLoginAlert: false
+  }
+
+  componentDidMount(){
+    this.setState(state => ({
+      isAuthorizated: this.props.profile.isAuthorizated
+    }))
   }
 
   handleSubmit = (e) => {
@@ -25,9 +30,6 @@ class LoginForm extends React.Component {
       .then(res => {
         console.log(res);
         if(res.data === "success"){
-          this.setState({
-            isAuthorizated: true
-          })
           this.props.login({
             login: this.state.login,
             password: this.state.password
@@ -51,30 +53,21 @@ class LoginForm extends React.Component {
 
   render() {
     const loginAlert = this.state.isLoginAlert ? "" : "hide";
-    let loginForm = null;
-    console.log(this.state)
-    if(!this.state.isAuthorizated){
-      loginForm = (
-        <div className = "login-wrapper">
-        <Form className="form">
-          <Alert variant = "danger" className = {loginAlert}>Incorrect login or password.</Alert>
-          <Form.Group controlId = "login">
-            <Form.Control type = "text" placeholder = "login" onChange = { this.loginChange } value={ this.state.login }/>
-            <Form.Text className="muted">Please enter your login.</Form.Text>
-          </Form.Group>
-          <Form.Group controlId = "password">
-            <Form.Control type = "password" placeholder = "password" onChange = { this.passwordChange } value={ this.state.password }/>
-            <Form.Text>Newer tell someone your password.</Form.Text>
-          </Form.Group>
-          <Button size = "sm" onClick={ this.handleSubmit } >login</Button>
-        </Form>
-      </div>
-      );
-    }
     return (
-      <>
-        {loginForm}
-      </>
+      <div className = "login-wrapper">
+      <Form className="form">
+        <Alert variant = "danger" className = {loginAlert}>Incorrect login or password.</Alert>
+        <Form.Group controlId = "login">
+          <Form.Control type = "text" placeholder = "login" onChange = { this.loginChange } value={ this.state.login }/>
+          <Form.Text className="muted">Please enter your login.</Form.Text>
+        </Form.Group>
+        <Form.Group controlId = "password">
+          <Form.Control type = "password" placeholder = "password" onChange = { this.passwordChange } value={ this.state.password }/>
+          <Form.Text>Newer tell someone your password.</Form.Text>
+        </Form.Group>
+        <Button size = "sm" onClick={ this.handleSubmit } >login</Button>
+      </Form>
+    </div>
     );
   };
 };
@@ -85,8 +78,8 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const mapStateToProps = (state) => ({
-  isAuthorizated: state.isAuthorizated
+const mapStateToProps = (store) => ({
+  profile: store.profile
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
