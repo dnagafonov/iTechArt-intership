@@ -1,6 +1,16 @@
 const {type} = require('../actions/action-constants');
 
-const loginReducer = (state, action) => {
+const initialState = {
+  profile: {
+    account: {
+      login: "",
+      password: ""
+    },
+    isAuthorizated: false
+  }
+}
+
+const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case type.LOGIN:
       return { account: action.account, isAuthorizated: true };

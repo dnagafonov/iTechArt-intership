@@ -1,4 +1,5 @@
 export const type = {
   LOGIN: "LOGIN",
-  LOGOUT: "LOGOUT"
+  LOGOUT: "LOGOUT",
+  TOOGLE_TOOLBAR_ITEM: "TOOGLE_TOOLBAR_ITEM"
 };
