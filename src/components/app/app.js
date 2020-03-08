@@ -4,30 +4,22 @@ import { connect } from 'react-redux';
 import Toolbar from '../toolbar/toolbar/toolbar';
 
 class App extends React.Component {
-
-  state = {
-    store: {}
-  };
-
-  componentDidMount(){
-    this.setState(state => ({
-      isAuthorizated: this.props.store.profile.isAuthorizated
-    }))
-  }
-
   render(){
     let login = <LoginForm/>;
-    if(!this.state.isAuthorizated)
+    let toolbar = null;
+    if(this.props.profile.isAuthorizated){
       login = null;
+      toolbar = <Toolbar/>;
+    }
     return (
       <>
         {login}
-        <Toolbar/>
+        {toolbar}
       </>
     );
   };
 }
 
-const mapStateToProps = (store) => ({store});
+const mapStateToProps = (store) => ({profile: store.loginReducer});
 
 export default connect(mapStateToProps)(App);

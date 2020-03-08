@@ -13,12 +13,6 @@ class LoginForm extends React.Component {
     isLoginAlert: false
   }
 
-  componentDidMount(){
-    this.setState(state => ({
-      isAuthorizated: this.props.profile.isAuthorizated
-    }))
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state)
@@ -79,7 +73,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (store) => ({
-  profile: store.profile
+  profile: store.loginReducer.profile
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

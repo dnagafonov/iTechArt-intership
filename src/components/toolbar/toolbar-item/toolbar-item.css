@@ -5,13 +5,17 @@
   flex-direction: column;
   align-items: center;
 
+  line-height: 0.9rem;
+  box-sizing: border-box;
   white-space: pre;
 }
 
 .toolbar-item:hover {
+  padding: 4px 6px;
+
   cursor: pointer;
   border: 1px solid #ccc;
-  background-color: rgba(4, 137, 186, 0.09);;
+  background-color: rgba(4, 137, 186, 0.09);
 }
 
 .toolbar-item img {
@@ -22,5 +26,9 @@
 .toolbar-item__selected {
   border: 1px solid #ccc;
   background-color: rgba(4, 137, 186, 0.09);;
+}
 
+.toolbar-item p {
+  margin: 0;
+  padding: 0;
 }
