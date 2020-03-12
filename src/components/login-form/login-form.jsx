@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Button, Alert } from 'react-bootstrap';
 import './login-form.css'
 import axios from '../../axios';
 import { login } from '../../actions/actions'
+import Login from '../login/login';
+
+const checkValid = (login, password) => login !== "" && password !== "";
 
 class LoginForm extends React.Component {
 
@@ -15,8 +17,7 @@ class LoginForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state)
-    if(this.state.login !== "" && this.state.password !== ""){
+    if(checkValid(this.state.login, this.state.password)){
       axios.post('/api/users/login',{
         login: `${this.state.login}`,
         password: `${this.state.password}`
@@ -46,22 +47,11 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const loginAlert = this.state.isLoginAlert ? "" : "hide";
+
     return (
       <div className = "login-wrapper">
-      <Form className="form">
-        <Alert variant = "danger" className = {loginAlert}>Incorrect login or password.</Alert>
-        <Form.Group controlId = "login">
-          <Form.Control type = "text" placeholder = "login" onChange = { this.loginChange } value={ this.state.login }/>
-          <Form.Text className="muted">Please enter your login.</Form.Text>
-        </Form.Group>
-        <Form.Group controlId = "password">
-          <Form.Control type = "password" placeholder = "password" onChange = { this.passwordChange } value={ this.state.password }/>
-          <Form.Text>Newer tell someone your password.</Form.Text>
-        </Form.Group>
-        <Button size = "sm" onClick={ this.handleSubmit } >login</Button>
-      </Form>
-    </div>
+        <Login/>
+      </div>
     );
   };
 };
