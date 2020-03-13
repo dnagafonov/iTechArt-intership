@@ -18,13 +18,16 @@ class LoginForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if(checkValid(this.state.login, this.state.password)){
+      this.props.login({
+        login: this.state.login,
+        password: this.state.password
+      });
       axios.post('/api/users/login',{
         login: `${this.state.login}`,
         password: `${this.state.password}`
       })
       .then(res => {
-        console.log(res);
-        if(res.data === "success"){
+        if(res.data === "success" ){
           this.props.login({
             login: this.state.login,
             password: this.state.password
@@ -47,10 +50,17 @@ class LoginForm extends React.Component {
   }
 
   render() {
-
+    const props = {
+      login: this.state.login,
+      password: this.state.password,
+      loginChange: this.loginChange,
+      passwordChange: this.passwordChange,
+      loginAlert: this.state.isLoginAlert,
+      handleSubmit: this.handleSubmit
+    }
     return (
       <div className = "login-wrapper">
-        <Login/>
+        <Login {...props}/>
       </div>
     );
   };
@@ -63,7 +73,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (store) => ({
-  profile: store.loginReducer.profile
+  profile: store.profile
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
