@@ -1,0 +1,16 @@
+.active-toolbar-item__name,
+.active-toolbar-item__operation {
+  padding: 5px 7px;
+  display: flex;
+  flex-flow: row nowrap;
+
+  white-space: nowrap;
+}
+
+.active-toolbar-item img {
+  padding-right: 3px;
+}
+
+.active-toolbar-item__operations {
+  padding-left: 15px;
+}

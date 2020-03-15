@@ -18,10 +18,12 @@ class LoginForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if(checkValid(this.state.login, this.state.password)){
+      /*STUB*/
       this.props.login({
         login: this.state.login,
         password: this.state.password
       });
+      /*STUB*/
       axios.post('/api/users/login',{
         login: `${this.state.login}`,
         password: `${this.state.password}`

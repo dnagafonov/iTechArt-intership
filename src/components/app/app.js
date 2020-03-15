@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from '../login-form/login-form'
 import { connect } from 'react-redux';
 import Toolbar from '../toolbar/toolbar/toolbar';
-import Sidebar from '../toolbar/sidebar/sidebar/sidebar';
+import Sidebar from '../sidebar/sidebar/sidebar';
 
 class App extends React.Component {
   render(){
