@@ -1,13 +1,14 @@
 import React from 'react';
 import './toolbar-item.css'
+import '../../../css/block-outline.css'
 import { toggleActiveToolbarEl } from '../../../actions/actions';
 import { connect } from 'react-redux';
 
 const ToolbarItem = props => {
     const { toolName, changeActive, alt, src, id, isActive } = props;
-    const active = isActive ? "toolbar-item__selected" : "";
+    const active = isActive ? "block-outline" : "";
     return(
-      <div className = {`toolbar-item ${active}`} onClick = {() => changeActive(id)}>
+      <div className = {`toolbar-item block-outline-hover ${active}`} onClick = {() => changeActive(id)}>
         <img src={src} alt={alt}/>
         <p>{toolName}</p>
       </div>

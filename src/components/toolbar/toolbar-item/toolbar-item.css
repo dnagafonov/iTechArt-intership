@@ -10,20 +10,9 @@
   white-space: pre;
 }
 
-.toolbar-item:hover {
-  cursor: pointer;
-  box-shadow: inset 0 0 0 1px #ccc;
-  background-color: rgba(4, 137, 186, 0.09);
-}
-
 .toolbar-item img {
   width: 32px;
   height: 32px;
-}
-
-.toolbar-item__selected {
-  box-shadow: inset 0 0 0 1px #ccc;
-  background-color: rgba(4, 137, 186, 0.09);;
 }
 
 .toolbar-item p {

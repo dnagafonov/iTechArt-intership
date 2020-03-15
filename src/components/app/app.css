@@ -1,0 +1,8 @@
+.app article {
+  height: 100%;
+  display: flex;
+}
+
+.app .ReactTable {
+  width: 100%;
+}
