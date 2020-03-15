@@ -1,10 +1,10 @@
 import React from 'react';
 import './activeToolbarItem.css'
+import '../../../css/block-outline.css'
 import headerImg from './open.png';
 import itemImg from './form.png';
 
 const ActiveToolbarItem = props => {
-  console.log(headerImg);
   const { header, items } = props;
   const name = (
     <div className="active-toolbar-item__name">
@@ -13,7 +13,7 @@ const ActiveToolbarItem = props => {
     </div>
   );
   const operations = items.map(operation => (
-    <li className="active-toolbar-item__operation">
+    <li className="active-toolbar-item__operation block-outline-hover" key={operation}>
       <img src={itemImg} alt = {operation}/>
       <div>{operation}</div>
     </li>
