@@ -3,6 +3,8 @@ import './activeToolbarItem.css'
 import '../../../css/block-outline.css'
 import headerImg from './open.png';
 import itemImg from './form.png';
+import { connect } from 'react-redux';
+import { getTableData } from '../../../actions/actions';
 
 const ActiveToolbarItem = props => {
   const { header, items } = props;
@@ -13,9 +15,9 @@ const ActiveToolbarItem = props => {
     </div>
   );
   const operations = items.map(operation => (
-    <li className="active-toolbar-item__operation block-outline-hover" key={operation}>
+    <li className="active-toolbar-item__operation block-outline-hover" key={operation.id} onClick={() => props.getTableJSON(operation.id)}>
       <img src={itemImg} alt = {operation}/>
-      <div>{operation}</div>
+      <div>{operation.name}</div>
     </li>
   ));
   return(
@@ -28,4 +30,10 @@ const ActiveToolbarItem = props => {
   );
 }
 
-export default ActiveToolbarItem;
+const mapDispatch = dispatch => ({
+  getTableJSON: (id) => {
+    dispatch(getTableData(id));
+  }
+})
+
+export default connect(null, mapDispatch)(ActiveToolbarItem);

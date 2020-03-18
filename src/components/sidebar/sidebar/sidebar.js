@@ -11,7 +11,7 @@ const Sidebar = props => {
         header: item.header,
         items: item.items
       }
-      return <ActiveToolbarItem {...iProps}/>
+      return <ActiveToolbarItem {...iProps} key={item.header}/>
     })
   }
   return(

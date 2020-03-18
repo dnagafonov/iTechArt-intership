@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './login-form.css'
-import axios from '../../axios';
+import axios from '../../tools/axios';
 import { login } from '../../actions/actions'
 import Login from '../login/login';
 
