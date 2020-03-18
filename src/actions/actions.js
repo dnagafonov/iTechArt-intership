@@ -13,7 +13,6 @@ export const toggleActiveToolbarEl = id => ({
 
 export const getTableData =  id => async dispatch => {
   const json = await requestTable(id);
-  console.log(json);
   dispatch({
     type: type.GET_TABLE_DATA,
     json

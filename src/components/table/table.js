@@ -9,7 +9,7 @@ const Table= props => {
   return(
     <ReactTable
       columns={columns}
-      defaultPageSize={5}
+      defaultPageSize={10}
 
     />
   );
