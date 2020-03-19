@@ -4,14 +4,17 @@ import 'react-table/react-table.css'
 import { connect } from 'react-redux';
 import { generateTableHeader } from '../../tools/generate-table-header';
 
-const Table= props => {
-  const columns = props.tableJSON ? generateTableHeader(props.tableJSON) : [];
-  return(
-    <ReactTable
-      columns={columns}
-      defaultPageSize={5}
+const Table = props => {
+  let tableProps = {};
+  if(props.tableJSON){
+    tableProps["columns"] = generateTableHeader(props.tableJSON);
+    tableProps["data"] = props.tableJSON;
+  }
+  else
+    tableProps["columns"] = [];
 
-    />
+  return(
+    <ReactTable {...tableProps}/>
   );
 }
 
