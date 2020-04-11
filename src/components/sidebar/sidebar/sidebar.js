@@ -2,6 +2,7 @@ import React from 'react';
 import './sidebar.css'
 import { connect } from 'react-redux';
 import ActiveToolbarItem from '../activeToolbarItem/activeToolbarItem';
+import { randomId } from '../../../tools/randomIdentificator';
 
 const Sidebar = props => {
   let res = null;
@@ -11,7 +12,7 @@ const Sidebar = props => {
         header: item.header,
         items: item.items
       }
-      return <ActiveToolbarItem {...iProps} key={item.header}/>
+      return <ActiveToolbarItem {...iProps} key={randomId()}/>
     })
   }
   return(

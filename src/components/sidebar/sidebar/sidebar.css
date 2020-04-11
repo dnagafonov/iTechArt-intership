@@ -1,5 +1,6 @@
 .sidebar {
   width: 230px;
 
+  padding: 7px 0;
   overflow-x: hidden;
 }
