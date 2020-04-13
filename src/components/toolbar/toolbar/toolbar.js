@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ToolbarItem from '../toolbar-item/toolbar-item'
 import './toolbar.css'
+import { randomId } from '../../../tools/randomIdentificator';
 
 const Toolbar = props => {
     const items = props.toolbarItems.map(el => {
@@ -11,7 +12,7 @@ const Toolbar = props => {
         alt: el.alt,
         isActive: el.isActive,
         id: el.id,
-        key: el.id
+        key: randomId()
       }
       return <ToolbarItem {...itemProps}/>
     })
